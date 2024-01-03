@@ -38,7 +38,7 @@ exports.router = (function () {
     apiRouter.route('/commentaires/:id').put(commentaire.update);
     // Supprimer un commentaire via son id
     apiRouter.route('/commentaires/:id').delete(commentaire.delete);
-    // Récupérer les commentaires d'une technologie
+    // Récupérer les commentaires entérieur à une date
     apiRouter.route('/commentaires/date/:date').get(commentaire.getByDate);
 
     // Technologie routes
