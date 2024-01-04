@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const apiRouter = require('./apiRouter').router;
+const userRoutes = require('./routes/userRoutes');
+const commentaireRoutes = require('./routes/commentaireRoutes');
+const technologieRoutes = require('./routes/technologieRoutes');
 
 // Initialisation de l'application express
 const app = express();
@@ -17,12 +19,13 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-// Utiliser APIRouter
-app.use('/api/', apiRouter);
+// Configuration des routes
+app.use('/api/users', userRoutes);
+app.use('/api/commentaires', commentaireRoutes);
+app.use('/api/technologies', technologieRoutes);
+
 
 // Configuration du port d'écoute
 app.listen(3000, () => {
     console.log('Server started');
 });
-
-

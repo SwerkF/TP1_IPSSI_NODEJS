@@ -10,19 +10,18 @@ function Nav() {
       // Récupérer user dans local storage
       const user = localStorage.getItem('user');
       if (user) {
-        // Vérifier token
-        axios.post('http://localhost:3000/api/users/verifyToken', {
-          token: JSON.parse(user).token
+       // Vérifier si le token est valide
+       console.log(`Bearer ${JSON.parse(user).token}`)
+        axios.get('http://localhost:3000/api/users/verifyToken', {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(user).token}`
+          }
         }).then((response) => {
-            if (response.status === 200) {
-                setUser(JSON.parse(user))
-            } else {
-                localStorage.removeItem('user');
-                window.location.href = '/login'
-            }
-        }).catch(() => {
-            localStorage.removeItem('user');
-            window.location.href = '/login'
+          if (response.status === 200) {
+            setUser(response.data.user)
+          }
+        }).catch((error) => {
+          console.log(error);
         })
       }
   
@@ -47,6 +46,7 @@ function Nav() {
                 <div className="navbar-nav">
                     <a className="nav-link active" aria-current="page" href="/">Home</a>
                     <a className="nav-link" href="/technologie">Technologies</a>
+                    <a className="nav-link" href="/commentaires">Commentaires</a>
                     {
                         user ? (
                             <>

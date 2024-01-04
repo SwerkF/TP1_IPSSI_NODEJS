@@ -2,6 +2,8 @@
 
 L'application front permet de se connecter, se déconnecter, ajouter et supprimer une technologie.
 
+Pour ajouter un commentaire il faut se rendre dans la page technologie et sur un techno, il faut être connecté en admin ou journaliste pour le faire.
+
 Liste des routes d'API:
 
 # Users routes
